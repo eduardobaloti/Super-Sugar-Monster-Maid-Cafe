@@ -52,13 +52,9 @@ public class Player : MonoBehaviour
     
     void Attack()
     {
-        //slash.PlayOneShot(slash.clip, 1);
-
-        
+        //slash.PlayOneShot(slash.clip, 1);        
         animator.SetTrigger("attack");
-
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
         foreach(Collider2D enemy in hitEnemies)
         {
             Debug.Log("Hited");
