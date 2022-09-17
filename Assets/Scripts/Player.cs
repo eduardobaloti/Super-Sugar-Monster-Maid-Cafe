@@ -48,6 +48,11 @@ public class Player : MonoBehaviour
         {
             Attack();
         }
+
+        //if (Input.GetKeyDown(KeyCode.W)) {pos}
+        
+
+
     }
     
     void Attack()
@@ -59,7 +64,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Hited");
 
-            enemy.GetComponent<Monster>().TakeDamage(1);
+            enemy.GetComponent<GenericMonster>().TakeDamage(1);
             
 
             
