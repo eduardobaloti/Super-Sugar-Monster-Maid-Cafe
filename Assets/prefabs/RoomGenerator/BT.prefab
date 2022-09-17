@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6216188489069256678}
   - component: {fileID: 146126602262274767}
   - component: {fileID: 2923021518509110542}
+  - component: {fileID: 1890382453889349011}
   m_Layer: 0
   m_Name: door (1)
   m_TagString: Untagged
@@ -98,6 +99,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1890382453889349011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134558562415082828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40a803b610ddf640996e4a637ba111f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: top
 --- !u!1 &3033209208756405666
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3033209208756405666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.38, y: 3.22, z: -19.313305}
+  m_LocalPosition: {x: 0, y: 3, z: 17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -191,9 +205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db81f1f11dccd24a805333eb94e0023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openingDirection: 1
-  topRooms: []
+  openingDirection: 2
   bottomRooms: []
+  topRooms: []
   leftRooms: []
   rightRooms: []
 --- !u!1001 &2593978818845152026
@@ -225,7 +239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95536959252407617, guid: 674453a16f38dcd40ba870d4e7766b14, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.207846
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 95536959252407617, guid: 674453a16f38dcd40ba870d4e7766b14, type: 3}
       propertyPath: m_LocalRotation.w

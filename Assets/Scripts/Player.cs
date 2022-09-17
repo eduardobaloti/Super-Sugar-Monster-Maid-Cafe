@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,30 +17,19 @@ public class Player : MonoBehaviour
     public Transform attackPoint;
     public float attackRange = 0.5f;
     public LayerMask enemyLayers;
-
-
     public Animator animator;
+    Vector3 move;
+    String direction = "bottom";
 
-
-    enum pos{
-        top,
-        bottom,
-        left,
-        right,
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Physics.IgnoreLayerCollision(5,6);
+        Physics.IgnoreLayerCollision(5, 6);
     }
-
-    // Update is called once per frame
     void FixedUpdate()
     {
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        rb.MovePosition(transform.position + (move * Time.deltaTime * speed));   
+        move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        rb.MovePosition(transform.position + (move * Time.deltaTime * speed));
     }
 
     void Update()
@@ -49,41 +39,65 @@ public class Player : MonoBehaviour
             Attack();
         }
 
-        //if (Input.GetKeyDown(KeyCode.W)) {pos}
-        
-
-
+        if (Input.GetKeyDown(KeyCode.D) && move.x < 0)
+        {
+            direction = "right";
+            animator.SetTrigger("moveright");
+            print("right");
+        }
+        if (Input.GetKeyDown(KeyCode.A) && move.x > 0)
+        {
+            direction = "left";
+            
+            animator.SetTrigger("moveleft");
+            print("left");
+        }
+        if (Input.GetKeyDown(KeyCode.S) && move.y < 0)
+        {
+            direction = "bottom";
+            animator.SetTrigger("movebottom");
+            animator.ResetTrigger("movetop");
+            print("bottom");
+        }
+        if (Input.GetKeyDown(KeyCode.W) && move.y > 0)
+        {
+            direction = "top";
+            animator.SetTrigger("movetop");
+            animator.ResetTrigger("movebottom");
+            print("top");
+        }
     }
-    
+
     void Attack()
     {
-        //slash.PlayOneShot(slash.clip, 1);        
-        animator.SetTrigger("attack");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-        foreach(Collider2D enemy in hitEnemies)
+        if (direction == "bottom")
         {
-            Debug.Log("Hited");
-
-            enemy.GetComponent<GenericMonster>().TakeDamage(1);
-            
-
-            
+            animator.SetTrigger("attackbottom"); ;
+        }
+        if (direction == "top")
+        {
+            animator.SetTrigger("attacktop"); ;
+        }
+        if (direction == "right")
+        {
+            animator.SetTrigger("attackright"); ;
+        }
+        if (direction == "left")
+        {
+            animator.SetTrigger("attackleft"); ;
         }
 
-
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("Hited");
+            enemy.GetComponent<GenericMonster>().TakeDamage(1);
+        }
     }
 
-    void OnDrawGizmosSelected() {
-
+    void OnDrawGizmosSelected()
+    {
         if (attackPoint.position == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-/*
-    void OnCollisionEnter(Collision other) 
-    {
-        //MonsterColision    
-    }
-
-*/
 }
-                       

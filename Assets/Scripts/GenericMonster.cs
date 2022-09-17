@@ -18,36 +18,29 @@ public class GenericMonster : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;  
-
         rb = GetComponent<Rigidbody2D>();
-        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        move = new Vector2(0.005f, 0.005f) * Time.deltaTime;
-        //maidPosition = maid.GetComponent<Transform>().position;
-
-
-       // rb.transform.Translate(rb.position += move);
-        
+        move = new Vector2(0.005f, 0.005f) * Time.deltaTime; 
     }
 
-    private void OnCollisionEnter2D(Collision collision) {
-        /*
-        if (collision.gameObject.name == "wall")
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "wall")
         {
             move = new Vector2(-0.005f, 0f);
             print("colid");
         }
 
-         if (collision.gameObject.name == "wall")
+         if (collision.gameObject.tag == "player")
         {
+            /*
             move = new Vector2(-0.005f, 0f);
             print("colid");
+            */
         }
-        */
     }
 
     public void TakeDamage(int damage)
@@ -55,16 +48,11 @@ public class GenericMonster : MonoBehaviour
         currentHealth -= damage;
         animator.SetTrigger("damage");
 
-
         if(currentHealth <= 0)
         {
-            //WaitForSecondsRealtime(1);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
             this.enabled = false;
         }
-        //damage
     }
-
-
 }
