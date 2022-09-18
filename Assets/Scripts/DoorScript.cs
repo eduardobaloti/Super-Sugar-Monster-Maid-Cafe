@@ -11,48 +11,38 @@ public class DoorScript : MonoBehaviour
     {
         cameratp = GameObject.FindGameObjectWithTag("MainCamera");
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             if (direction == "left")
             {
-                other.transform.position += new Vector3(5f, 0);
-                cameratp.transform.position += new Vector3(0, -5);
+                other.transform.position -= new Vector3(2.3f, 0);
+                cameratp.transform.position -= new Vector3(5f, 0);
             }
-                
-
-            print("doored");
         }
         if (other.CompareTag("Player"))
         {
             if (direction == "right")
             {
-                other.transform.position += new Vector3(-5f, 0);
-                cameratp.transform.position += new Vector3(0, -5);
-            }
-
-
-            print("doored");
+                other.transform.position += new Vector3(2.3f, 0);
+                cameratp.transform.position += new Vector3(5f, 0);
+            };
         }
         if (other.CompareTag("Player"))
         {
             if (direction == "top")
             {
-                other.transform.position += new Vector3(0, 2.5f);
-                cameratp.transform.position += new Vector3(0, 3);
+                other.transform.position += new Vector3(0, 2.3f);
+                cameratp.transform.position += new Vector3(0, 3.75f);
             }
-
-            print("doored top");
         }
         if (other.CompareTag("Player"))
         {
             if (direction == "bottom")
             {
-                other.transform.position += new Vector3(0, -2.5f);
-                cameratp.transform.position += new Vector3(0, -3);
-                print("doored");
+                other.transform.position -= new Vector3(0, 2.3f);
+                cameratp.transform.position -= new Vector3(0, 3.75f);
             }
 
         }

@@ -7,6 +7,8 @@ TagManager:
   - wall
   - SpawnPoint
   - Rooms
+  - Monster
+  - Restart
   layers:
   - Default
   - TransparentFX

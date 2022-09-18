@@ -152,7 +152,7 @@ InputManager:
   - serializedVersion: 3
     m_Name: Horizontal
     descriptiveName: 
-    descriptiveNegativeName: 
+    descriptiveNegativeName: -Horizontal
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
@@ -168,7 +168,7 @@ InputManager:
   - serializedVersion: 3
     m_Name: Vertical
     descriptiveName: 
-    descriptiveNegativeName: 
+    descriptiveNegativeName: -Vertical
     negativeButton: 
     positiveButton: 
     altNegativeButton: 
@@ -485,3 +485,4 @@ InputManager:
     type: 2
     axis: 5
     joyNum: 0
+  m_UsePhysicalKeys: 0

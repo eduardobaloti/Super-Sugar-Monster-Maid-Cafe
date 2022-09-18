@@ -21,8 +21,13 @@ public class Player : MonoBehaviour
     Vector3 move;
     String direction = "bottom";
 
+    public int maxHealth = 3;
+    public int currentHealth;
+
     void Start()
     {
+        currentHealth = maxHealth;
+
         rb = GetComponent<Rigidbody2D>();
         Physics.IgnoreLayerCollision(5, 6);
     }
@@ -39,48 +44,46 @@ public class Player : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && move.x < 0)
+        if (Input.GetKeyDown(KeyCode.D))
         {
             direction = "right";
             animator.SetTrigger("moveright");
-            print("right");
+
         }
-        if (Input.GetKeyDown(KeyCode.A) && move.x > 0)
+        if (Input.GetKeyDown(KeyCode.A))
         {
             direction = "left";
-            
             animator.SetTrigger("moveleft");
-            print("left");
+
         }
-        if (Input.GetKeyDown(KeyCode.S) && move.y < 0)
+        if (Input.GetKeyDown(KeyCode.S))
         {
             direction = "bottom";
             animator.SetTrigger("movebottom");
-            animator.ResetTrigger("movetop");
-            print("bottom");
+
         }
-        if (Input.GetKeyDown(KeyCode.W) && move.y > 0)
+        if (Input.GetKeyDown(KeyCode.W))
         {
             direction = "top";
             animator.SetTrigger("movetop");
-            animator.ResetTrigger("movebottom");
-            print("top");
+
         }
     }
 
     void Attack()
     {
+
         if (direction == "bottom")
         {
             animator.SetTrigger("attackbottom"); ;
         }
         if (direction == "top")
         {
-            animator.SetTrigger("attacktop"); ;
+            animator.SetTrigger("attacktop");
         }
         if (direction == "right")
         {
-            animator.SetTrigger("attackright"); ;
+            animator.SetTrigger("attackright");
         }
         if (direction == "left")
         {
@@ -90,8 +93,58 @@ public class Player : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
+
             Debug.Log("Hited");
             enemy.GetComponent<GenericMonster>().TakeDamage(1);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector3 damage = new Vector3(0, -2);
+       if (GameObject.FindGameObjectWithTag("Monster") && (direction == "top"))
+        {
+            //rb.MovePosition(transform.position + damage);
+            currentHealth -= 1;
+        }
+        if (GameObject.FindGameObjectWithTag("Monster") && (direction == "bottom"))
+        {
+            //rb.MovePosition(transform.position + damage);
+            currentHealth -= 1;
+        }
+        if (GameObject.FindGameObjectWithTag("Monster") && (direction == "right"))
+        {
+            //rb.MovePosition(transform.position + damage);
+            currentHealth -= 1;
+        }
+        if (GameObject.FindGameObjectWithTag("Monster") && (direction == "left"))
+        {
+           //rb.MovePosition(transform.position + damage);
+            currentHealth -= 1;
+        }
+
+        if (currentHealth == 3)
+        {
+            
+        }
+        if (currentHealth == 2)
+        {
+            GameObject.Find("lf1").SetActive(false);
+        }
+        if (currentHealth == 1)
+        {
+            GameObject.Find("lf2").SetActive(false);
+        }
+
+        if (currentHealth <= 0)
+        {
+            GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this);
+
+            GameObject.Find("lf3").SetActive(false);
+            GameObject restart = GameObject.FindGameObjectWithTag("Restart");
+            restart.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -99,5 +152,6 @@ public class Player : MonoBehaviour
     {
         if (attackPoint.position == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+
     }
 }
