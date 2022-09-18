@@ -16,7 +16,7 @@ public class DungeonGenerator : MonoBehaviour
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<DungeonGenerator>();
-        Invoke("Spawn", 0.25f);
+        Invoke("Spawn", 0.15f);
     }
     void Spawn()
     {
@@ -35,12 +35,12 @@ public class DungeonGenerator : MonoBehaviour
             else if (openingDirection == 3) //Spawn Right entry
             {
                 rand = Random.Range(0, templates.rightRooms.Length);
-                //Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
+                Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             else if (openingDirection == 4) //Spawn Left entry
             {
                 rand = Random.Range(0, templates.leftRooms.Length);
-                //Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
+                Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
             }
             spawned = true;
             print("stop spawn");
