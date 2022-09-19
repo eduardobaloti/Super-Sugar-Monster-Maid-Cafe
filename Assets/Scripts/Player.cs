@@ -39,39 +39,39 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        print(move);
         if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
         {
             Attack();
         }
-
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && move.x > 0.0f)
         {
             direction = "right";
             animator.SetTrigger("moveright");
 
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && move.x < 0.0f)
         {
             direction = "left";
             animator.SetTrigger("moveleft");
 
+
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && move.y < 0.0f)
         {
             direction = "bottom";
             animator.SetTrigger("movebottom");
-
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && move.y > 0.0f)
         {
             direction = "top";
             animator.SetTrigger("movetop");
-
         }
     }
 
     void Attack()
     {
+        rb.AddForce(new Vector2(0f,0f));
 
         if (direction == "bottom")
         {
@@ -101,31 +101,33 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector3 damage = new Vector3(0, -2);
-       if (GameObject.FindGameObjectWithTag("Monster") && (direction == "top"))
+        print("player collision");
+        Vector3 damage = new Vector3(0, -5);
+        if (collision.gameObject.tag == "Monster" && (direction == "top"))
+        {
+            rb.MovePosition(transform.position + damage);
+            currentHealth -= 1;
+        }
+        if (collision.gameObject.tag == "Monster" && (direction == "bottom"))
         {
             //rb.MovePosition(transform.position + damage);
             currentHealth -= 1;
         }
-        if (GameObject.FindGameObjectWithTag("Monster") && (direction == "bottom"))
+        if (collision.gameObject.tag == "Monster" && (direction == "right"))
         {
             //rb.MovePosition(transform.position + damage);
             currentHealth -= 1;
         }
-        if (GameObject.FindGameObjectWithTag("Monster") && (direction == "right"))
+        if (collision.gameObject.tag == "Monster" && (direction == "left"))
         {
             //rb.MovePosition(transform.position + damage);
             currentHealth -= 1;
         }
-        if (GameObject.FindGameObjectWithTag("Monster") && (direction == "left"))
-        {
-           //rb.MovePosition(transform.position + damage);
-            currentHealth -= 1;
-        }
+        
 
         if (currentHealth == 3)
         {
-            
+            //GameObject.Find("lf3").SetActive(false);
         }
         if (currentHealth == 2)
         {
