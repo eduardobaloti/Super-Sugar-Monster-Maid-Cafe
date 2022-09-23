@@ -18,7 +18,7 @@ public class DoorScript : MonoBehaviour
             if (direction == "left")
             {
                 other.transform.position -= new Vector3(2.3f, 0);
-                cameratp.transform.position -= new Vector3(5f, 0);
+                cameratp.transform.Translate(new Vector3(-5, 0));
             }
         }
         if (other.CompareTag("Player"))
@@ -26,7 +26,7 @@ public class DoorScript : MonoBehaviour
             if (direction == "right")
             {
                 other.transform.position += new Vector3(2.3f, 0);
-                cameratp.transform.position += new Vector3(5f, 0);
+                cameratp.transform.Translate(new Vector3(5f, 0));
             };
         }
         if (other.CompareTag("Player"))
@@ -34,7 +34,7 @@ public class DoorScript : MonoBehaviour
             if (direction == "top")
             {
                 other.transform.position += new Vector3(0, 2.3f);
-                cameratp.transform.position += new Vector3(0, 3.75f);
+                cameratp.transform.Translate(new Vector3(0, 3.75f));
             }
         }
         if (other.CompareTag("Player"))
@@ -42,7 +42,7 @@ public class DoorScript : MonoBehaviour
             if (direction == "bottom")
             {
                 other.transform.position -= new Vector3(0, 2.3f);
-                cameratp.transform.position -= new Vector3(0, 3.75f);
+                cameratp.transform.Translate(new Vector3(0, -3.75f));
             }
 
         }
