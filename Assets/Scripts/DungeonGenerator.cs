@@ -9,6 +9,8 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject[] topRooms;
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
+
+    public GameObject closedRoom;
     private DungeonGenerator templates;
     private int rand;
     private bool spawned = false;
@@ -49,7 +51,11 @@ public class DungeonGenerator : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("SpawnPoint")){
-            Destroy(gameObject);
+            if (other.GetComponent<DungeonGenerator>().spawned == false && spawned == false){
+                Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+            spawned = true;
         }
     }
 }

@@ -131,10 +131,10 @@ TextureImporter:
       name: bala_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 2
         y: 0
-        width: 15
-        height: 13
+        width: 21
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: bala_1
       rect:
         serializedVersion: 2
-        x: 17
+        x: 26
         y: 0
-        width: 15
-        height: 13
+        width: 21
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: bala_2
       rect:
         serializedVersion: 2
-        x: 33
+        x: 50
         y: 0
-        width: 15
-        height: 13
+        width: 21
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: bala_3
       rect:
         serializedVersion: 2
-        x: 49
-        y: 0
-        width: 15
-        height: 13
+        x: 74
+        y: 3
+        width: 21
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,6 +207,69 @@ TextureImporter:
       bones: []
       spriteID: fa6c3cc8ec7572741af9a31e6d988e2b
       internalID: 1256754462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bala_4
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 2
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0d7cfba9d6867d478837416fc17f340
+      internalID: -560689974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bala_5
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 1
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c3f69ab10a82e40b4837aa2edb8145
+      internalID: 403259942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bala_6
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 0
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bc05064152ddeb4d8276e688e3309f3
+      internalID: 970508616
       vertices: []
       indices: 
       edges: []
@@ -225,6 +288,9 @@ TextureImporter:
       bala_3: 1256754462
       bala_0: 1077387776
       bala_1: -1715417306
+      bala_6: 970508616
+      bala_4: -560689974
+      bala_5: 403259942
       bala_2: -237729929
   spritePackingTag: 
   pSDRemoveMatte: 0

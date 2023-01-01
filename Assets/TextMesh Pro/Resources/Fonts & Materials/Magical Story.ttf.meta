@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2980282f3c90b724e9b1118681d1fdbf
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Magical Story
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: cbd1ca4255dd1b24aba2a51ab4b04896, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

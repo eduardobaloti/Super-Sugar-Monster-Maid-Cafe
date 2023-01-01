@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425214834268977749}
   m_Layer: 0
-  m_Name: Entry Room
+  m_Name: Entry Room 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   topRooms: []
   leftRooms: []
   rightRooms: []
+  closedRoom: {fileID: 0}
 --- !u!1 &425214834773672991
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   topRooms: []
   leftRooms: []
   rightRooms: []
+  closedRoom: {fileID: 0}
 --- !u!1 &7342241133875702895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,6 +1284,7 @@ MonoBehaviour:
   topRooms: []
   leftRooms: []
   rightRooms: []
+  closedRoom: {fileID: 0}
 --- !u!1 &7342241134224801012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1383,7 @@ MonoBehaviour:
   topRooms: []
   leftRooms: []
   rightRooms: []
+  closedRoom: {fileID: 0}
 --- !u!1 &7342241134912710271
 GameObject:
   m_ObjectHideFlags: 0

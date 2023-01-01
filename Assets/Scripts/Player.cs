@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System;
 using System.Data;
 using System.Collections;
@@ -7,15 +8,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     //public AudioSource slash; 
-
     Rigidbody2D rb;
     public float speed = 10f;
-    bool walking = false;
-
 
     //Attack methods
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    public float attackRange = 0.6f;
     public LayerMask enemyLayers;
     public Animator animator;
     Vector3 move;
@@ -27,7 +25,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-
         rb = GetComponent<Rigidbody2D>();
         Physics.IgnoreLayerCollision(5, 6);
     }
@@ -44,34 +41,16 @@ public class Player : MonoBehaviour
         {
             Attack();
         }
-        if (Input.GetKeyDown(KeyCode.D) && move.x > 0.0f)
-        {
-            direction = "right";
-            animator.SetTrigger("moveright");
+        animator.SetFloat("horizontal", move.x);
+        animator.SetFloat("vertical", move.y);
+        animator.SetFloat("speed", move.magnitude);
 
-        }
-        if (Input.GetKeyDown(KeyCode.A) && move.x < 0.0f)
-        {
-            direction = "left";
-            animator.SetTrigger("moveleft");
-
-
-        }
-        if (Input.GetKeyDown(KeyCode.S) && move.y < 0.0f)
-        {
-            direction = "bottom";
-            animator.SetTrigger("movebottom");
-        }
-        if (Input.GetKeyDown(KeyCode.W) && move.y > 0.0f)
-        {
-            direction = "top";
-            animator.SetTrigger("movetop");
-        }
+        IsLive();
     }
 
     void Attack()
     {
-        rb.AddForce(new Vector2(0f,0f));
+        rb.AddForce(new Vector2(0f, 0f));
 
         if (direction == "bottom")
         {
@@ -123,37 +102,34 @@ public class Player : MonoBehaviour
             //rb.MovePosition(transform.position + damage);
             currentHealth -= 1;
         }
-        
-
-        if (currentHealth == 3)
-        {
-            //GameObject.Find("lf3").SetActive(false);
-        }
-        if (currentHealth == 2)
-        {
-            GameObject.Find("lf1").SetActive(false);
-        }
-        if (currentHealth == 1)
-        {
-            GameObject.Find("lf2").SetActive(false);
-        }
-
-        if (currentHealth <= 0)
-        {
-            GetComponent<Collider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
-            Destroy(this);
-
-            GameObject.Find("lf3").SetActive(false);
-            GameObject restart = GameObject.FindGameObjectWithTag("Restart");
-            restart.transform.GetChild(0).gameObject.SetActive(true);
-        }
     }
 
     void OnDrawGizmosSelected()
     {
         if (attackPoint.position == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 
+    void IsLive()
+    {
+        switch (currentHealth)
+        {
+            case 3:
+                //GameObject.Find("lf0").SetActive(false);
+                break;
+            case 2:
+                //GameObject.Find("lf1").GetComponent<SpriteRenderer>.enabled = false;
+                break;
+            case 1:
+                GameObject.Find("lf2").SetActive(false);
+                break;
+            case 0:
+                GameObject.Find("lf3").SetActive(false);
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+                GameObject restart = GameObject.FindGameObjectWithTag("Restart");
+                restart.transform.GetChild(0).gameObject.SetActive(true);
+                break;
+        }
     }
 }
