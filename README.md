@@ -1,4 +1,5 @@
-# Super Sugar Monster Maid Cafe!
+<p align="center"> # Super Sugar Monster Maid Cafe! </p>
+
 
 
 
