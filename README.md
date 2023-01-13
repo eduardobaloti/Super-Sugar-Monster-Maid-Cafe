@@ -6,5 +6,8 @@
 
 </p>
 
-<h4 align="center"> Super Sugar Monster Maid Café is a indie roguelike in development. soon you will be able to play the demo at this link </h4> </br>
+<h4 align="center"> Super Sugar Monster Maid Café is a indie roguelike in development. soon you will be able to play the demo and support the project in this link </h4>
+
+</br>
+
 <h3 align="center"> https://kinderkiwii.itch.io/super-sugar-monster-maid-coffee <h3>
