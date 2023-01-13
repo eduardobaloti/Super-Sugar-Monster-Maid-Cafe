@@ -1,4 +1,4 @@
-<p align="center"> # Super Sugar Monster Maid Cafe! </p>
+<p align="center"> <h1> Super Sugar Monster Maid Cafe! </h1> </p>
 
 
 
