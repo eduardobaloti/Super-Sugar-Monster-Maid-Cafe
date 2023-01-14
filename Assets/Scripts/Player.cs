@@ -4,105 +4,94 @@ using System.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    //public AudioSource slash; 
+    //Player Stats
     Rigidbody2D rb;
+    Vector3 move;
     public float speed = 10f;
+    public Image[] health;
+    public int currentHealth;
+    float attackSpeed = 0.35f;
+
 
     //Attack methods
     public Transform attackPoint;
-    public float attackRange = 0.6f;
+    public float attackRange;
+    bool isAttacking = false;
+    //Layers and songs
     public LayerMask enemyLayers;
     public Animator animator;
-    Vector3 move;
-    String direction = "bottom";
-
-    public int maxHealth = 3;
-    public int currentHealth;
+    public AudioSource source;
+    public AudioClip slash, hitted, item;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = 3;
         rb = GetComponent<Rigidbody2D>();
-        Physics.IgnoreLayerCollision(5, 6);
+        Physics.IgnoreLayerCollision(5, 6); //Ui and Enemies?
     }
     void FixedUpdate()
     {
-        move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         rb.MovePosition(transform.position + (move * Time.deltaTime * speed));
     }
 
     void Update()
     {
-        print(move);
-        if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButton(0) || Input.GetButton("Fire1"))
         {
-            Attack();
+            if (!isAttacking) StartCoroutine(Attack());
         }
+
+        //Aniamtor Settings -----------------------------------
+
         animator.SetFloat("horizontal", move.x);
         animator.SetFloat("vertical", move.y);
         animator.SetFloat("speed", move.magnitude);
 
-        IsLive();
+        if (move.x > 0) animator.SetInteger("IsFacing", 1); //Right
+        if (move.x < 0) animator.SetInteger("IsFacing", 0); //left
+
     }
 
-    void Attack()
+    IEnumerator Attack()
     {
-        rb.AddForce(new Vector2(0f, 0f));
-
-        if (direction == "bottom")
-        {
-            animator.SetTrigger("attackbottom"); ;
-        }
-        if (direction == "top")
-        {
-            animator.SetTrigger("attacktop");
-        }
-        if (direction == "right")
-        {
-            animator.SetTrigger("attackright");
-        }
-        if (direction == "left")
-        {
-            animator.SetTrigger("attackleft"); ;
-        }
-
+        isAttacking = true;
+        source.PlayOneShot(slash);
+        animator.SetTrigger("Attack");
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
         foreach (Collider2D enemy in hitEnemies)
         {
-
-            Debug.Log("Hited");
+            Debug.Log("Hitted enemies = " + hitEnemies.Length);
             enemy.GetComponent<GenericMonster>().TakeDamage(1);
         }
+
+        yield return new WaitForSecondsRealtime(attackSpeed);
+        isAttacking = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        print("player collision");
-        Vector3 damage = new Vector3(0, -5);
-        if (collision.gameObject.tag == "Monster" && (direction == "top"))
+        if (collision.gameObject.tag == "Monster")
         {
-            rb.MovePosition(transform.position + damage);
-            currentHealth -= 1;
-        }
-        if (collision.gameObject.tag == "Monster" && (direction == "bottom"))
-        {
-            //rb.MovePosition(transform.position + damage);
-            currentHealth -= 1;
-        }
-        if (collision.gameObject.tag == "Monster" && (direction == "right"))
-        {
-            //rb.MovePosition(transform.position + damage);
-            currentHealth -= 1;
-        }
-        if (collision.gameObject.tag == "Monster" && (direction == "left"))
-        {
-            //rb.MovePosition(transform.position + damage);
+            source.PlayOneShot(hitted);
+            StartCoroutine(Hitted());
+            //Coroutine for knockout
             currentHealth -= 1;
         }
     }
+
+    private IEnumerator Hitted()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.3f, 0.3f);
+        yield return new WaitForSeconds(0.25f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
 
     void OnDrawGizmosSelected()
     {
@@ -110,26 +99,15 @@ public class Player : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    void IsLive()
+    public void IsLive()
     {
         switch (currentHealth)
         {
-            case 3:
-                //GameObject.Find("lf0").SetActive(false);
-                break;
-            case 2:
-                //GameObject.Find("lf1").GetComponent<SpriteRenderer>.enabled = false;
-                break;
-            case 1:
-                GameObject.Find("lf2").SetActive(false);
-                break;
-            case 0:
-                GameObject.Find("lf3").SetActive(false);
-                GetComponent<Collider2D>().enabled = false;
-                GetComponent<SpriteRenderer>().enabled = false;
-                GameObject restart = GameObject.FindGameObjectWithTag("Restart");
-                restart.transform.GetChild(0).gameObject.SetActive(true);
-                break;
+            case 3: health[3].color = new Color(1f, 1f, 1f, 0.25f); break;
+            case 2: health[2].color = new Color(1f, 1f, 1f, 0.25f); break;
+            case 1: health[1].color = new Color(1f, 1f, 1f, 0.25f); break;
+            case 0: health[0].color = new Color(1f, 1f, 1f, 0.25f); break;
+
         }
     }
 }

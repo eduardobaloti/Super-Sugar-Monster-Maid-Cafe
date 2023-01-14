@@ -9,6 +9,4 @@ public class RestartScreen : MonoBehaviour
     public void Restart(){
         SceneManager.LoadScene(1);
     }
-    // Start is called before the first frame update
-    
 }

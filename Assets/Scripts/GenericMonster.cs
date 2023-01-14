@@ -1,3 +1,4 @@
+using System.Transactions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,36 +6,35 @@ using UnityEngine;
 public class GenericMonster : MonoBehaviour
 {
     Rigidbody2D rb;
-
     public Animator animator;
 
-    public int maxHealth = 3;
-    public int currentHealth;
-    Vector2 move;
-    Vector2 maidPosition;
+    //Monster stats
+    int maxHealth = 3;
+    int currentHealth;
+
 
     public Transform maid;
-    // Start is called before the first frame update
+
+
     void Start()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        move = new Vector2(0.005f, 0.005f) * Time.deltaTime;
+        //Check speed and flip monster
+
+        //PatrolWait();
+        rb.MovePosition(transform.position + (maid.position * 0.25f * Time.deltaTime));
+        //PatrolWait();                  
+        //rb.MovePosition(transform.position + (new Vector3(-1, 0) * Time.deltaTime * 2));
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "wall")
-        {
-            move = new Vector2(-0.005f, 0f);
-            print("colid");
-        }
-
         if (collision.gameObject.tag == "player")
         {
             /*
@@ -47,7 +47,7 @@ public class GenericMonster : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        animator.SetTrigger("damage");
+        StartCoroutine(Hitted());
 
         if (currentHealth <= 0)
         {
@@ -55,5 +55,12 @@ public class GenericMonster : MonoBehaviour
             GetComponent<SpriteRenderer>().enabled = false;
             Destroy(this);
         }
+    }
+
+    private IEnumerator Hitted()
+    {
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.3f, 0.3f);
+        yield return new WaitForSeconds(0.25f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
