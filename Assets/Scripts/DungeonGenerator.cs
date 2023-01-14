@@ -9,8 +9,10 @@ public class DungeonGenerator : MonoBehaviour
     public GameObject[] topRooms;
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
-
     public GameObject closedRoom;
+
+
+    public GameObject templateObject;
     private DungeonGenerator templates;
     private int rand;
     private bool spawned = false;
@@ -20,10 +22,12 @@ public class DungeonGenerator : MonoBehaviour
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<DungeonGenerator>();
         Invoke("Spawn", 0.15f);
     }
+
     void Spawn()
     {
-        if (spawned == false){
-            
+        if (spawned == false)
+        {
+
             if (openingDirection == 1) //Spawn Top Entry
             {
                 rand = Random.Range(0, templates.topRooms.Length);
@@ -49,12 +53,16 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("SpawnPoint")){
-            if (other.GetComponent<DungeonGenerator>().spawned == false && spawned == false){
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpawnPoint"))
+        {
+            if (other.GetComponent<DungeonGenerator>().spawned == false && spawned == false)
+            {
                 Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+
             spawned = true;
         }
     }
