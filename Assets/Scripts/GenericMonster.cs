@@ -24,10 +24,12 @@ public class GenericMonster : MonoBehaviour
 
     void FixedUpdate()
     {
-        //Check speed and flip monster
+        //Vector2 move = new Vector2(rb.MovePosition(transform.position + (maid.position * 0.25f * Time.deltaTime)));
 
-        //PatrolWait();
         rb.MovePosition(transform.position + (maid.position * 0.25f * Time.deltaTime));
+
+
+
         //PatrolWait();                  
         //rb.MovePosition(transform.position + (new Vector3(-1, 0) * Time.deltaTime * 2));
     }

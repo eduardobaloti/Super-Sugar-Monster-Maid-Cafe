@@ -32,13 +32,13 @@ public class DoorScript : MonoBehaviour
 
             if (direction == "top")
             {
-                other.transform.position += new Vector3(0, 2.3f);
+                other.transform.position += new Vector3(0, 2.4f);
                 cameratp.transform.Translate(new Vector3(0, 3.75f));
             }
 
             if (direction == "bottom")
             {
-                other.transform.position -= new Vector3(0, 2.3f);
+                other.transform.position -= new Vector3(0, 2.4f);
                 cameratp.transform.Translate(new Vector3(0, -3.75f));
             }
 

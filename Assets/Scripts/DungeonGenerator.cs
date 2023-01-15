@@ -20,14 +20,13 @@ public class DungeonGenerator : MonoBehaviour
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<DungeonGenerator>();
-        Invoke("Spawn", 0.15f);
+        Invoke("Spawn", 0.2f);
     }
 
     void Spawn()
     {
         if (spawned == false)
         {
-
             if (openingDirection == 1) //Spawn Top Entry
             {
                 rand = Random.Range(0, templates.topRooms.Length);
@@ -49,21 +48,22 @@ public class DungeonGenerator : MonoBehaviour
                 Instantiate(templates.leftRooms[rand], transform.position, templates.leftRooms[rand].transform.rotation);
             }
             spawned = true;
-            print("stop spawn");
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SpawnPoint"))
+        if (other.CompareTag("SpawnPoint") && other.GetComponent<DungeonGenerator>().spawned == true)
         {
+            /*
             if (other.GetComponent<DungeonGenerator>().spawned == false && spawned == false)
             {
                 Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-
-            spawned = true;
+            */
+            Destroy(gameObject);
+            //spawned = true;
         }
     }
 }
