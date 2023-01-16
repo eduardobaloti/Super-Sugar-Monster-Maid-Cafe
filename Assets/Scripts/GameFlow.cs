@@ -7,7 +7,7 @@ public class GameFlow : MonoBehaviour
 {
     public GameObject maid, restartScreen;
     public AudioSource levelSound, effectSound;
-    public AudioClip dead, confirm;
+    public AudioClip dead, confirm, item;
     bool gameOver = false;
 
     //Player Configs
@@ -22,15 +22,18 @@ public class GameFlow : MonoBehaviour
 
     void Update()
     {
-        maidLife[0].IsLive();
         GameOver();
+    }
+
+    public void PowerUp()
+    {
+        effectSound.PlayOneShot(item);
     }
 
     void GameOverSounds()
     {
 
         if (!gameOver) effectSound.PlayOneShot(dead);
-
         levelSound.Stop();
     }
 

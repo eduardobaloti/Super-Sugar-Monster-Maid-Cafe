@@ -7,16 +7,19 @@ public class DoorScript : MonoBehaviour
     public string direction;
     private GameObject cameratp;
     public Sprite[] doorState;
-
+    public int doorIsLocked = 0;
 
     void Start()
     {
         cameratp = GameObject.FindGameObjectWithTag("MainCamera");
+
+        Sprite door = this.gameObject.GetComponent<Sprite>();
+        if (doorIsLocked == 1) door = doorState[1];
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && doorIsLocked == 1)
         {
             if (direction == "left")
             {

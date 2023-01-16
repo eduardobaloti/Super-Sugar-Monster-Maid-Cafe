@@ -11,28 +11,33 @@ public class Player : MonoBehaviour
     //Player Stats
     Rigidbody2D rb;
     Vector3 move;
-    public float speed = 10f;
+    public float speed;
     public Image[] health;
+    public int maxhealth = 3;
     public int currentHealth;
-    float attackSpeed = 0.35f;
+    public float attackSpeed = 0.35f;
 
 
     //Attack methods
     public Transform attackPoint;
     public float attackRange;
     bool isAttacking = false;
+    public string power;
+    public GameObject states;
+
     //Layers and songs
     public LayerMask enemyLayers;
     public Animator animator;
     public AudioSource source;
-    public AudioClip slash, hitted, item;
+    public AudioClip slash, hitted;
 
     void Start()
     {
-        currentHealth = 3;
+        currentHealth = maxhealth;
         rb = GetComponent<Rigidbody2D>();
-        Physics.IgnoreLayerCollision(5, 6); //Ui and Enemies?
+        Physics.IgnoreLayerCollision(5, 6); //Ui and EnemyCheck
     }
+
     void FixedUpdate()
     {
         move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
@@ -66,13 +71,22 @@ public class Player : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hitted enemies = " + hitEnemies.Length);
-            enemy.GetComponent<GenericMonster>().TakeDamage(1);
+            if (gameObject.tag == "item")
+            {
+                //print("item attached");
+                //enemy.GetComponent<GiftSystem>().TakeDamage();
+            }
+            else
+            {
+                Debug.Log("Hitted enemies = " + hitEnemies.Length);
+                enemy.GetComponent<GenericMonster>().TakeDamage(1);
+                //if (power == "ice") states.GetComponent<States>().Frozen();
+            }
         }
-
         yield return new WaitForSecondsRealtime(attackSpeed);
         isAttacking = false;
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -82,6 +96,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Hitted());
             //Coroutine for knockout
             currentHealth -= 1;
+            IsLive();
         }
     }
 

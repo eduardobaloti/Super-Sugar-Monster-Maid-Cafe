@@ -7,6 +7,6 @@ using UnityEngine.SceneManagement;
 public class RestartScreen : MonoBehaviour
 {
     public void Restart(){
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 }
