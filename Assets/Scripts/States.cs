@@ -8,6 +8,7 @@ public class States : MonoBehaviour
     public GameObject enemyteste;
 
 
+
     public IEnumerator Frozen()
     {
         print("frozen");
@@ -18,5 +19,4 @@ public class States : MonoBehaviour
         Destroy(ice);
         enemyteste.gameObject.GetComponent<GenericMonster>().speed = 1f;
     }
-
 }

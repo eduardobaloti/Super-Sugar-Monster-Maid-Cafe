@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,16 @@ public class DoorScript : MonoBehaviour
     public string direction;
     private GameObject cameratp;
     public Sprite[] doorState;
-    public int doorIsLocked = 0;
-
+    public int doorIsLocked;
+    public SpriteRenderer door;
     void Start()
     {
         cameratp = GameObject.FindGameObjectWithTag("MainCamera");
 
-        Sprite door = this.gameObject.GetComponent<Sprite>();
-        if (doorIsLocked == 1) door = doorState[1];
+        if (doorIsLocked == 1) 
+        {
+            door.sprite = doorState[1]; 
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
