@@ -161,9 +161,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  maxhealth: 3
   currentHealth: 0
+  attackSpeed: 0.35
   attackPoint: {fileID: 8235582275508940356}
   attackRange: 0.2
+  power: 
+  states: {fileID: 0}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -171,7 +175,6 @@ MonoBehaviour:
   source: {fileID: 0}
   slash: {fileID: 8300000, guid: c1559cb30e6ea5947944b5840700353a, type: 3}
   hitted: {fileID: 8300000, guid: 7834d8ca87b3fd8469513f4463153b30, type: 3}
-  item: {fileID: 0}
 --- !u!61 &8235582276526585574
 BoxCollider2D:
   m_ObjectHideFlags: 0

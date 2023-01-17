@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    public string powerName;
+    public enum PowerName
+    {
+        Coffe,
+        CakePiece,
+        Cake,
+        IceCream
+    }
+
+    public PowerName power;
     public SpriteRenderer frame;
     public GameObject maid;
     public GameObject eventSystem;
@@ -20,14 +28,14 @@ public class PowerUp : MonoBehaviour
         {
             eventSystem.GetComponent<GameFlow>().PowerUp();
 
-            if (powerName == "coffe")
+            if (power == PowerName.Coffe)
             {
                 frame.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
                 maid.GetComponent<Player>().speed += 0.30f;
                 maid.GetComponent<Player>().attackSpeed = 0.25f;
             }
 
-            if (powerName == "cake")
+            if (power == PowerName.CakePiece)
             {
                 if (maid.GetComponent<Player>().currentHealth == maid.GetComponent<Player>().maxhealth) { }
                 else
@@ -37,10 +45,10 @@ public class PowerUp : MonoBehaviour
                 }
             }
 
-            if (powerName == "icecream")
+            if (power == PowerName.IceCream)
             {
                 frame.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-                maid.GetComponent<Player>().power = "ice";
+                maid.GetComponent<Player>().power = Player.PowerName.IceCream;
             }
 
             Destroy(this.gameObject);

@@ -20,7 +20,7 @@ public class DungeonGenerator : MonoBehaviour
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<DungeonGenerator>();
-        Invoke("Spawn", 0.2f);
+        Invoke("Spawn", 0.15f);
     }
 
     void Spawn()
@@ -53,7 +53,7 @@ public class DungeonGenerator : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SpawnPoint") && other.GetComponent<DungeonGenerator>().spawned == true)
+        if (other.CompareTag("SpawnPoint"))
         {
             /*
             if (other.GetComponent<DungeonGenerator>().spawned == false && spawned == false)

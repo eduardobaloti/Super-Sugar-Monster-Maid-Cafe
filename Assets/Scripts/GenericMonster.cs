@@ -14,6 +14,7 @@ public class GenericMonster : MonoBehaviour
     int maxHealth = 3;
     int currentHealth;
     public float speed = 1;
+    bool isHitted = false;
 
 
     public Transform maid;
@@ -30,7 +31,7 @@ public class GenericMonster : MonoBehaviour
     {
         //Vector2 move = new Vector2(rb.MovePosition(transform.position + (maid.position * 0.25f * Time.deltaTime)));
 
-        rb.MovePosition(transform.position + ((maid.position * 0.25f * Time.deltaTime)) * speed);
+        rb.MovePosition(transform.position + ((maid.position * 1f * Time.deltaTime)) * speed);
 
 
 
@@ -50,10 +51,12 @@ public class GenericMonster : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject player)
     {
         currentHealth -= damage;
         StartCoroutine(Hitted());
+        StartCoroutine(Hurted());
+        knockback(player);
 
         if (currentHealth <= 0)
         {
@@ -62,6 +65,23 @@ public class GenericMonster : MonoBehaviour
             source.PlayOneShot(beated);
             Destroy(this);
         }
+    }
+
+    IEnumerator Hurted()
+    {
+        var oldSpeed = speed;
+        speed = speed * 0.1f; 
+        isHitted = true;
+        yield return new WaitForSeconds(0.25f);
+        isHitted = false;
+        speed = oldSpeed;
+    }
+
+    void knockback(GameObject enemy)
+    {
+        Vector2 dist = (gameObject.transform.position - enemy.transform.position);
+        dist.Normalize();
+        rb.AddForce(dist * 5f);
     }
 
     private IEnumerator Hitted()

@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     //Player Stats
+    [Header("Player Stats")]
     Rigidbody2D rb;
     Vector3 move;
     public float speed;
@@ -18,14 +19,20 @@ public class Player : MonoBehaviour
     public float attackSpeed = 0.35f;
 
 
-    //Attack methods
+    [Header("Attack stats")]
     public Transform attackPoint;
     public float attackRange;
     bool isAttacking = false;
-    public string power;
+    bool isHitted = false;
+    public enum PowerName
+    {
+        IceCream,
+    };
+    public PowerName power;
     public GameObject states;
 
-    //Layers and songs
+
+    [Header("Layer and songs")]
     public LayerMask enemyLayers;
     public Animator animator;
     public AudioSource source;
@@ -41,6 +48,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //move = move.normalized;
         rb.MovePosition(transform.position + (move * Time.deltaTime * speed));
     }
 
@@ -79,7 +87,8 @@ public class Player : MonoBehaviour
             else
             {
                 Debug.Log("Hitted enemies = " + hitEnemies.Length);
-                enemy.GetComponent<GenericMonster>().TakeDamage(1);
+                enemy.GetComponent<GenericMonster>().TakeDamage(1, gameObject);
+
                 //if (power == "ice") states.GetComponent<States>().Frozen();
             }
         }
@@ -88,25 +97,43 @@ public class Player : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Monster" && isHitted == false)
         {
             source.PlayOneShot(hitted);
             StartCoroutine(Hitted());
-            //Coroutine for knockout
+            StartCoroutine(Hurted());
+            knockback(collision);
             currentHealth -= 1;
             IsLive();
         }
     }
 
-    private IEnumerator Hitted()
+    void knockback(Collision2D enemy)
     {
+        Vector2 dist = (gameObject.transform.position - enemy.transform.position);
+        dist.Normalize();
+        rb.AddForce(dist * 5f);
+    }
+
+    IEnumerator Hitted()
+    {
+        
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.7f, 0.3f, 0.3f);
         yield return new WaitForSeconds(0.25f);
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
+    IEnumerator Hurted()
+    {
+        var oldSpeed = speed;
+        speed = speed * 0.1f; 
+        isHitted = true;
+        yield return new WaitForSeconds(0.25f);
+        isHitted = false;
+        speed = oldSpeed;
+    }
 
     void OnDrawGizmosSelected()
     {
