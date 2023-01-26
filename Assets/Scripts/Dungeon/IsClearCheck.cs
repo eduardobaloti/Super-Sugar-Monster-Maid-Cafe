@@ -19,7 +19,7 @@ public class IsClearCheck : MonoBehaviour
 
         for (int i = 0; i < enemyQuantity; i++)
         {
-            monsterSpawn[i] = Instantiate(monsters[0]);
+            //monsterSpawn[i] = Instantiate(monsters[0]);
         }
     }
 

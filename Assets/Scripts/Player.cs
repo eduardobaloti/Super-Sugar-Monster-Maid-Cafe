@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         move = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //move = move.normalized;
+        //move.Normalize();
         rb.MovePosition(transform.position + (move * Time.deltaTime * speed));
     }
 
@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
         var oldSpeed = speed;
         speed = speed * 0.1f; 
         isHitted = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         isHitted = false;
         speed = oldSpeed;
     }
