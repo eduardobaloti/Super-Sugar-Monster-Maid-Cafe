@@ -2,6 +2,7 @@ using System.Transactions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class GenericMonster : MonoBehaviour
 {
@@ -9,80 +10,54 @@ public class GenericMonster : MonoBehaviour
     public Animator animator;
     public AudioSource source;
     public AudioClip beated;
-    float old_pos;
+    public AIPath ai;
+    public Transform maid;
+
 
     //Monster stats
     public int maxHealth = 3;
     int currentHealth;
-    public float speed = 1;
     bool isHitted = false;
-    public string Mtype = monster;
-
-
-
-    public Transform maid;
-
+    
 
     void Start()
     {
-        Physics.IgnoreLayerCollision(6, 8); //items
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
-
-        old_pos = transform.position.x;
     }
 
     void FixedUpdate()
     {
-        //Vector2 move = new Vector2(rb.MovePosition(transform.position + (maid.position * 0.25f * Time.deltaTime)));
-
-        rb.MovePosition(transform.position + ((maid.position * 1f * Time.deltaTime)) * speed);
-
-        if (old_pos < transform.position.x)
+        if (ai.desiredVelocity.x >= 0.1f)
         {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-            print("teste 2");
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
-
-        if (old_pos > transform.position.x)
+        else if (ai.desiredVelocity.x <= -0.1f)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-            print("teste 3");
-        }
-
-
-        //PatrolWait();                  
-        //rb.MovePosition(transform.position + (new Vector3(-1, 0) * Time.deltaTime * 2));
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "player")
-        {
-            /*
-            move = new Vector2(-0.005f, 0f);
-            print("colid");
-            */
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         }
     }
+
+
 
     public void TakeDamage(int damage, GameObject player)
     {
         currentHealth -= damage;
         StartCoroutine(Hitted());
-        StartCoroutine(Hurted());
+        //StartCoroutine(Hurted());
         knockback(player);
 
         if (currentHealth <= 0)
         {
+            source.PlayOneShot(beated);
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
-            source.PlayOneShot(beated);
             Destroy(this);
         }
     }
+    
 
+    /*
     IEnumerator Hurted()
     {
         var oldSpeed = speed;
@@ -92,6 +67,7 @@ public class GenericMonster : MonoBehaviour
         isHitted = false;
         speed = oldSpeed;
     }
+    */
 
     void knockback(GameObject enemy)
     {

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public Image[] health;
     public int maxhealth = 3;
     public int currentHealth;
-    public float attackSpeed = 0.35f;
+    public float attackSpeed = 0.30f;
 
 
     [Header("Attack stats")]
@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     bool isHitted = false;
     public enum PowerName
     {
+        Default,
         IceCream,
     };
     public PowerName power;
@@ -114,7 +115,7 @@ public class Player : MonoBehaviour
     {
         Vector2 dist = (gameObject.transform.position - enemy.transform.position);
         dist.Normalize();
-        rb.AddForce(dist * 5f);
+        rb.AddForce(dist * 7.5f);
     }
 
     IEnumerator Hitted()
@@ -128,9 +129,9 @@ public class Player : MonoBehaviour
     IEnumerator Hurted()
     {
         var oldSpeed = speed;
-        speed = speed * 0.1f; 
+        speed = speed * 0.5f; 
         isHitted = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.35f);
         isHitted = false;
         speed = oldSpeed;
     }
@@ -149,7 +150,6 @@ public class Player : MonoBehaviour
             case 2: health[2].color = new Color(1f, 1f, 1f, 0.25f); break;
             case 1: health[1].color = new Color(1f, 1f, 1f, 0.25f); break;
             case 0: health[0].color = new Color(1f, 1f, 1f, 0.25f); break;
-
         }
     }
 }

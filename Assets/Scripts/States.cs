@@ -14,9 +14,9 @@ public class States : MonoBehaviour
         print("frozen");
         var ice = Instantiate(iceCube);
         ice.transform.parent = enemyteste.transform;
-        enemyteste.gameObject.GetComponent<GenericMonster>().speed = 0f;
+        //enemyteste.gameObject.GetComponent<GenericMonster>().speed = 0f;
         yield return new WaitForSecondsRealtime(3);
         Destroy(ice);
-        enemyteste.gameObject.GetComponent<GenericMonster>().speed = 1f;
+        //enemyteste.gameObject.GetComponent<GenericMonster>().speed = 1f;
     }
 }

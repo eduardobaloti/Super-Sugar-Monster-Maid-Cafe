@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1ed5cf002814c8e4087fb8f710c04046
+guid: e58d849d04258ff47a1de12e5f6b5145
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,10 +128,52 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: portA-Sheet_0
+      name: lilyAttackDir_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 15
+        y: 0
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ef5173ce6d72247aefedf245fb8217
+      internalID: -423546054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lilyAttackDir_1
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 0
+        width: 19
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95ce4fedde224d64a9963a455d882387
+      internalID: 393126399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lilyAttackDir_2
+      rect:
+        serializedVersion: 2
+        x: 135
         y: 0
         width: 26
         height: 32
@@ -142,19 +184,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f66d541ae0af3a44c94d96fff8aa0a99
-      internalID: 1098193502
+      spriteID: 22c9d984c7c37ee4baefd6d01d7c810e
+      internalID: -1881101520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: portA-Sheet_1
+      name: lilyAttackDir_3
       rect:
         serializedVersion: 2
-        x: 67
+        x: 196
         y: 0
-        width: 26
+        width: 31
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,62 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e534839d467393d4598ab6780b667b64
-      internalID: -1121154093
+      spriteID: 39c1faa25591a8d4f84adabde8506007
+      internalID: 1601008703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: portA-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 131
-        y: 0
-        width: 26
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 005c3bb65c87431449854a406e6d6647
-      internalID: 1893859447
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portA-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 0
-        width: 26
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf6af1add6f0ee446bf5ed26679d6142
-      internalID: -398381926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portA-Sheet_4
+      name: lilyAttackDir_4
       rect:
         serializedVersion: 2
         x: 256
-        y: 3
-        width: 32
-        height: 26
+        y: 0
+        width: 44
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,71 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fb3d5c7f4c2d6f429d512f389f15c99
-      internalID: -805442769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portA-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 4
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 86379c20fcb163249bbee02845526fc5
-      internalID: -1982771154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portA-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 3
-        width: 32
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c21d3f72b6aeaec428f0d6a1fd0bdd05
-      internalID: 488457226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: portA-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 4
-        width: 32
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08c32e51398184a4b96eb2fc86bf74a8
-      internalID: -1742952044
+      spriteID: c9300e7dc77756c4c85df3346c616f14
+      internalID: -141404438
       vertices: []
       indices: 
       edges: []
@@ -306,14 +243,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      portA-Sheet_0: 1098193502
-      portA-Sheet_6: 488457226
-      portA-Sheet_4: -805442769
-      portA-Sheet_1: -1121154093
-      portA-Sheet_2: 1893859447
-      portA-Sheet_5: -1982771154
-      portA-Sheet_7: -1742952044
-      portA-Sheet_3: -398381926
+      lilyAttackDir_1: 393126399
+      lilyAttackDir_3: 1601008703
+      lilyAttackDir_2: -1881101520
+      lilyAttackDir_0: -423546054
+      lilyAttackDir_4: -141404438
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
